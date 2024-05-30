@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kogu Restaurant App</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+
+    <a href="#maincontent" class="skip-link">To The Main Content</a>
+
+    <header class="header">
+      <div class="header__inner">
+        <h1 class="header__title">kogu's Blog</h1>
+      </div>
+      <a href="#" id="menu" class="header__menu">☰</a>
+
+      <nav id="drawer" class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="/">Home</a></li>
+          <li class="nav__item"><a href="#">Favorite</a></li>
+          <li class="nav__item"><a href="https://github.com/SyafaatAkbar123">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="maincontent">
+
+      <div class="hero">
+        <div class="hero__inner">
+          <h1 class="hero__title">Let's hang out at Kogu Restaurant!</h1>
+          <p class="hero__tagline">
+            Experience the delectable cuisine, cozy atmosphere, and friendly service at Kogu Restaurant.
+          </p>
+        </div>
+      </div>
+
+      <section class="content">
+        <article class="headline">
+          <figure class="headline__figure">
+            <img src="./public/images/kogu-main-eid.png" alt="Dicoding Fact Sheet" />
+            <figcaption>kogu April 2024</figcaption>
+          </figure>
+          <div class="headline__content">
+            <h1 class="headline__title">HAPPY EID MUBARAK 1445H</h1>
+            <p class="headline__description">
+              A bunch of joy is coming over and it feels like just inches away! Let’s celebrate Eid Mubarak 1445, the moments where the joy sparks like confetti hanging in the air.
+              <br><br>
+              Anyway, we’re closed on 10th-12th April, see you after! 🌙💙
+
+            </p>
+            <button class="headline__button">Read More</button>
+          </div>
+        </article>
+
+
+
+        <div class="latest">
+          <h1 class="latest__label">Various References</h1>
+          <div class="posts">
+
+            
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <h3>F1316YB262 Copyright &copy; 2024 - kogu Restaurant</h3>
+    </footer>
+
+    <script>
+      fetch('./public/data/DATA.json')
+        .then(response => response.json())
+        .then(data => {
+
+          const outerContainer = document.querySelector('.posts');
+
+          data.restaurants.forEach(restaurant => {
+
+            const restaurantData = document.createElement('article');
+            restaurantData.classList.add('post-item');
+            restaurantData.innerHTML = `
+              <img
+                class="post-item__thumbnail"
+                src="${restaurant.pictureId}"
+                alt="Picture of Various feferences"
+              />
+              <div class="post-item__content">
+                <a class="post-item__date">
+                  <p class="post-item__date__author">RATING : ${restaurant.rating}, LOKASI : ${restaurant.city}</p>
+                  </a>
+                  <h1 class="post-item__title">
+                    ${restaurant.name}
+                    </h1>
+                    <p class="post-item__description">
+                      ${restaurant.description}
+                </p>
+              </div>
+            `;
+            outerContainer.appendChild(restaurantData);
+          });
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
+  </body>
+</html>
